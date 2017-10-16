@@ -11,6 +11,7 @@ import com.sda.teams.Team;
 import com.sda.teams.TeamControl;
 import com.sda.teams.TeamType;
 import com.sda.utils.HeroCreator;
+import com.sda.utils.MyScanner;
 import com.sda.utils.War;
 
 public class Main {
@@ -19,7 +20,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Scanner scanner = new Scanner(System.in);
 		HeroStatistics statsh1 = new HeroStatistics(200, 120, 200);
 		SuperHero hero1 = HeroCreator.createHero("Spiderman", statsh1, TeamType.RED);
 		HeroStatistics statsh2 = new HeroStatistics(300, 400, 50);
@@ -54,14 +54,14 @@ public class Main {
 		
 		
 		War firstEncounter = new War(teamSH, teamV);
-		War secondEncounter = new War(teamSH, teamTest);
+//		War secondEncounter = new War(teamSH, teamTest);
 		
-		firstEncounter.startWar(scanner);
+		firstEncounter.startWar(MyScanner.getScanner());
 //		secondEncounter.startWar();
 		
 		
 		
-		scanner.close();
+		MyScanner.closeScanner();
 	}
 
 }
