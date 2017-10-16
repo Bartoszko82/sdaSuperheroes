@@ -70,7 +70,7 @@ public abstract class AbstractHero {
 	
 	public void isResurrected() {
 		isAlive = true;
-		if(stats.getHealth() < 0) {
+		if(stats.getHealth() <= 0) {
 			stats.resetHealth();
 		}
 	}
