@@ -2,7 +2,8 @@ package com.sda.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import com.sda.superheroes.HeroStatistics;
 import com.sda.superheroes.SuperHero;
@@ -19,9 +20,9 @@ public class AbstractHeroTest {
 		SuperHero testHero = new SuperHero("testHero", stats, TeamType.RED);
 		
 		//then
-		Assert.assertEquals(100, testHero.getStats().getAttack(), 0);
-		Assert.assertEquals(100, testHero.getStats().getDefense(), 0);
-		Assert.assertEquals(150, testHero.getStats().getHealth(), 0);
+		assertThat(testHero.getStats().getAttack(), is(100));
+		assertThat(testHero.getStats().getDefense(), is(100));
+		assertThat(testHero.getStats().getHealth(), is(150));
 	}
 	
 	@Test
@@ -32,7 +33,7 @@ public class AbstractHeroTest {
 		//when
 		SuperHero testHero = new SuperHero("testHero", stats, TeamType.GREEN);
 		
-		//then
+//		then
 		Assert.assertEquals(100, testHero.getStats().getAttack(), 0);
 		Assert.assertEquals(150, testHero.getStats().getDefense(), 0);
 		Assert.assertEquals(100, testHero.getStats().getHealth(), 0);
