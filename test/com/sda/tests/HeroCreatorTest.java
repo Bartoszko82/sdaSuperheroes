@@ -1,33 +1,158 @@
 package com.sda.tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
+import com.sda.superheroes.HeroStatistics;
+import com.sda.superheroes.SuperHero;
 import com.sda.superheroes.Villain;
 import com.sda.teams.TeamType;
 import com.sda.utils.HeroCreator;
 
 
 public class HeroCreatorTest {
-
+	
 	@Test
-	public void testVillain() {
-		Villain villain1 = HeroCreator.createVillainWithDefaultStats("Joker", TeamType.RED);
-		Villain villain2 = HeroCreator.createVillainWithDefaultStats("Penguin", TeamType.BLUE);
-		Villain villain3 = HeroCreator.createVillainWithDefaultStats("Gargamel", TeamType.GREEN);
-		Villain villain4 = HeroCreator.createVillainWithDefaultStats("Vader", TeamType.RED);
-	
-		assertTrue (villain1.getTeam().equals(TeamType.RED));
-		assertTrue (villain1.getStats().getHealth()==150);
+	public void shouldCreateHeroWithTeamTypeRed() {
+		//given
+		String name = "HeroName";
+		TeamType teamType = TeamType.RED;
+		int health = 100;
+		int attack = 100;
+		int defense = 100;
 		
+		//when
+		HeroStatistics stats = new HeroStatistics(health, attack, defense);
+		SuperHero hero = HeroCreator.createHero(name, stats, teamType);
 		
-		System.out.println("Dude: " + villain1.getName() + " has beautifull stats like health (" + villain1.getStats().getAttack() + "), attack (" + villain1.getStats().getAttack() + ") and defence (" + villain1.getStats().getDefense() + "), whitch gives pa쿮r: " + villain1.getPower());
-		System.out.println("Dude: " + villain2.getName() + " has beautifull stats like health (" + villain2.getStats().getAttack() + "), attack (" + villain2.getStats().getAttack() + ") and defence (" + villain2.getStats().getDefense() + "), whitch gives pa쿮r: " + villain2.getPower());
-		System.out.println("Dude: " + villain3.getName() + " has beautifull stats like health (" + villain3.getStats().getAttack() + "), attack (" + villain3.getStats().getAttack() + ") and defence (" + villain3.getStats().getDefense() + "), whitch gives pa쿮r: " + villain3.getPower());
-		System.out.println("Dude: " + villain4.getName() + " has beautifull stats like health (" + villain4.getStats().getAttack() + "), attack (" + villain4.getStats().getAttack() + ") and defence (" + villain4.getStats().getDefense() + "), whitch gives pa쿮r: " + villain4.getPower());
-		
-	
+		//then
+		assertThat(hero.getName(), is(name));
+		assertThat(hero.getTeam(), is(teamType));
+		assertThat(hero.getStats().getHealth(), is(health+50));
+		assertThat(hero.getStats().getAttack(), is(attack));
+		assertThat(hero.getStats().getDefense(), is(defense));
 	}
 	
+	@Test
+	public void shouldCreateHeroWithTeamTypeGreen() {
+		//given
+		String name = "HeroName";
+		TeamType teamType = TeamType.GREEN;
+		int health = 100;
+		int attack = 100;
+		int defense = 100;
+		
+		//when
+		HeroStatistics stats = new HeroStatistics(health, attack, defense);
+		SuperHero hero = HeroCreator.createHero(name, stats, teamType);
+		
+		//then
+		assertThat(hero.getName(), is(name));
+		assertThat(hero.getTeam(), is(teamType));
+		assertThat(hero.getStats().getHealth(), is(health));
+		assertThat(hero.getStats().getAttack(), is(attack));
+		assertThat(hero.getStats().getDefense(), is(defense+50));
+	}
+	
+	@Test
+	public void shouldCreateHeroWithTeamTypeBlue() {
+		//given
+		String name = "HeroName";
+		TeamType teamType = TeamType.BLUE;
+		int health = 100;
+		int attack = 100;
+		int defense = 100;
+		
+		//when
+		HeroStatistics stats = new HeroStatistics(health, attack, defense);
+		SuperHero hero = HeroCreator.createHero(name, stats, teamType);
+		
+		//then
+		assertThat(hero.getName(), is(name));
+		assertThat(hero.getTeam(), is(teamType));
+		assertThat(hero.getStats().getHealth(), is(health));
+		assertThat(hero.getStats().getAttack(), is(attack+50));
+		assertThat(hero.getStats().getDefense(), is(defense));
+	}
+
+	@Test
+	public void shouldCreateVillainWithTeamTypeRed() {
+		//given
+		String name = "VillainName";
+		TeamType teamType = TeamType.RED;
+		int health = 100;
+		int attack = 100;
+		int defense = 100;
+		
+		//when
+		HeroStatistics stats = new HeroStatistics(health, attack, defense);
+		SuperHero villain = HeroCreator.createHero(name, stats, teamType);
+		
+		//then
+		assertThat(villain.getName(), is(name));
+		assertThat(villain.getTeam(), is(teamType));
+		assertThat(villain.getStats().getHealth(), is(health+50));
+		assertThat(villain.getStats().getAttack(), is(attack));
+		assertThat(villain.getStats().getDefense(), is(defense));
+	}
+	
+	@Test
+	public void shouldCreateVillainWithTeamTypeGreen() {
+		//given
+		String name = "VillainName";
+		TeamType teamType = TeamType.GREEN;
+		int health = 100;
+		int attack = 100;
+		int defense = 100;
+		
+		//when
+		HeroStatistics stats = new HeroStatistics(health, attack, defense);
+		SuperHero villain = HeroCreator.createHero(name, stats, teamType);
+		
+		//then
+		assertThat(villain.getName(), is(name));
+		assertThat(villain.getTeam(), is(teamType));
+		assertThat(villain.getStats().getHealth(), is(health));
+		assertThat(villain.getStats().getAttack(), is(attack));
+		assertThat(villain.getStats().getDefense(), is(defense+50));
+	}
+	
+	@Test
+	public void shouldCreateVillainWithTeamTypeBlue() {
+		//given
+		String name = "VillainName";
+		TeamType teamType = TeamType.BLUE;
+		int health = 100;
+		int attack = 100;
+		int defense = 100;
+		
+		//when
+		HeroStatistics stats = new HeroStatistics(health, attack, defense);
+		SuperHero villain = HeroCreator.createHero(name, stats, teamType);
+		
+		//then
+		assertThat(villain.getName(), is(name));
+		assertThat(villain.getTeam(), is(teamType));
+		assertThat(villain.getStats().getHealth(), is(health));
+		assertThat(villain.getStats().getAttack(), is(attack+50));
+		assertThat(villain.getStats().getDefense(), is(defense));
+	}
+	@Test
+	public void shouldCreateVillainWIthDefaultStatsAndTeamTypeRed() {
+		//given
+		String name = "Joker";
+		TeamType teamType = TeamType.RED;
+		
+		//when
+		Villain villain = HeroCreator.createVillainWithDefaultStats(name, teamType);
+		
+		//then
+		assertThat(villain.getName(), is(name));
+		assertThat(villain.getTeam(), is(teamType));
+		assertThat(villain.getStats().getHealth(), is(100+50));
+		assertThat(villain.getStats().getAttack(), is(100));
+		assertThat(villain.getStats().getDefense(), is(100));
+	}
 }
