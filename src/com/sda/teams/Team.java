@@ -10,22 +10,22 @@ import com.sda.superheroes.Villain;
 public class Team {
 
 	private TeamControl control;
-	private TeamType team;
+	private TeamType teamType;
 	private List<AbstractHero> list;
 	private TeamSide side = TeamSide.UNKNOWN;
 
-	public Team(TeamType team, TeamControl control) {
+	public Team(TeamType teamType, TeamControl control) {
 		this.control = control;
-		this.team = team;
+		this.teamType = teamType;
 		list = new ArrayList<AbstractHero>();
+	}
+	
+	public TeamType getTeamType() {
+		return teamType;
 	}
 	
 	public TeamControl getTypeOfControl() {
 		return control;
-	}
-	
-	public List<AbstractHero> getListOfHeroes() {
-		return list;
 	}
 	
 	public TeamSide getSide() {
@@ -55,23 +55,18 @@ public class Team {
 		}
 
 	}
+	
+	public List<AbstractHero> getListOfHeroes() {
+		return list;
+	}
 
 	public void addHeroToTeam(AbstractHero hero) throws InvalidHeroTeamException {
-		if (hero.getTeam().equals(this.team)){
+		if (hero.getTeam().equals(this.teamType)){
 			list.add(hero);
 			updateTeamSide();
 		} else {
 			throw new InvalidHeroTeamException(hero.getName() + " doesn`t match team type (RED should go to RED etc.)");
 		} 
-	}
-
-	public double getTeamPower() {
-		List<AbstractHero> heroesInTeam = this.list;
-		double TeamPower = 0;
-		for (AbstractHero hero : heroesInTeam) {
-			TeamPower += hero.getPower();
-		}
-		return TeamPower;
 	}
 
 	public int getNumberOfAlive() {
@@ -93,10 +88,19 @@ public class Team {
 		}
 		return count;
 	}
+	
+	public double getTeamPower() {
+		List<AbstractHero> heroesInTeam = this.list;
+		double TeamPower = 0;
+		for (AbstractHero hero : heroesInTeam) {
+			TeamPower += hero.getPower();
+		}
+		return TeamPower;
+	}
 
 	@Override
 	public String toString() {
-		return "team: " + team + " (" + control + ")";
+		return "team: " + teamType + " (" + control + ")";
 	}
 	
 	
