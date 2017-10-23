@@ -1,9 +1,11 @@
-package com.bartoszko.learning.superheroes.tests;
+package com.bartoszko.learning.superheroes.test;
 
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Test;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -69,6 +71,7 @@ public class TeamTest {
 		villainGREEN2 = HeroCreator.createVillain("BadGuyGREEN2", new HeroStatistics(100, 100, 100), TeamType.GREEN);
 		villainGREEN3 = HeroCreator.createVillain("BadGuyGREEN3", new HeroStatistics(100, 100, 100), TeamType.GREEN);
 	}
+	
 	
 	@Test
 	public void RedPlayerControledUnknownEmptyTeamShouldBeCreated() {
@@ -155,7 +158,7 @@ public class TeamTest {
 		greenCpuGoodTeam.addHeroToTeam(heroGREEN1);
 		greenCpuGoodTeam.addHeroToTeam(heroGREEN2);
 		greenCpuGoodTeam.addHeroToTeam(heroGREEN3);
-		greenCpuGoodTeam.addHeroToTeam(villainGREEN1);
+		greenCpuGoodTeam.addHeroToTeam(villainGREEN3);
 		
 		// then		
 		assertThat(greenCpuGoodTeam.getTeamType(), is(TeamType.GREEN));
@@ -223,7 +226,7 @@ public class TeamTest {
 		greenCpuGoodTeam.addHeroToTeam(heroGREEN1);
 		greenCpuGoodTeam.addHeroToTeam(heroGREEN2);
 		greenCpuGoodTeam.addHeroToTeam(heroGREEN3);
-		greenCpuGoodTeam.addHeroToTeam(villainGREEN1);
+		greenCpuGoodTeam.addHeroToTeam(villainGREEN2);
 			
 		heroGREEN2.isWounded(150);
 		
@@ -235,5 +238,11 @@ public class TeamTest {
 		assertThat(greenCpuGoodTeam.getNumberOfAlive(), is(3));
 		assertThat(greenCpuGoodTeam.getNumberOfDead(), is(1));
 //		assertThat(greenCpuGoodTeam.getTeamPower(), is(3*GREEN_HERO_POWER+1*GREEN_VILLAIN_POWER));
+	}
+	
+	@After
+	public void resurrectKilledOnes() {
+		villainBLUE3.isResurrected();
+		heroGREEN2.isResurrected();
 	}
 }

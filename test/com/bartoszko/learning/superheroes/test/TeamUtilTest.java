@@ -1,4 +1,4 @@
-package com.bartoszko.learning.superheroes.tests;
+package com.bartoszko.learning.superheroes.test;
 
 import org.junit.Test;
 
