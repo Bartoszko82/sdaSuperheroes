@@ -13,6 +13,7 @@ public class War {
 	private UI userInterface;
 	private Random generator;
 	private Comments comments;
+	
 
 	public War(Team teamA, Team teamB) {
 		this.teamA = teamA;
