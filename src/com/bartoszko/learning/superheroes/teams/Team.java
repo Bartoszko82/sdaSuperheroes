@@ -89,6 +89,14 @@ public class Team {
 		return count;
 	}
 	
+	public int getNumberOfSuperheroes( ) {
+		int count = 0;
+		for (AbstractHero ah : list) {
+				count += 1;
+		}
+		return count;
+	}
+	
 	public double getTeamPower() {
 		List<AbstractHero> heroesInTeam = this.list;
 		double TeamPower = 0;

@@ -47,9 +47,11 @@ public class UI {
 	}
 	
 	private int randomInputFighter(Team team) {
-		List<AbstractHero> listOfHeroes = team.getListOfHeroes();
-		int inputRange = listOfHeroes.size();
-		int randomInput = generator.nextInt(inputRange);
+		int randomInput = 0;
+		if(team.getNumberOfSuperheroes() > 0) {
+			int inputRange = team.getNumberOfSuperheroes();
+			randomInput = generator.nextInt(inputRange);
+		}	
 		return randomInput;
 	}
 	
