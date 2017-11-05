@@ -1,67 +1,36 @@
 package com.bartoszko.learning.superheroes.main;
 
-import java.util.Scanner;
-
-import com.bartoszko.learning.superheroes.heroes.HeroStatistics;
-import com.bartoszko.learning.superheroes.heroes.KamikadzeCleric;
-import com.bartoszko.learning.superheroes.heroes.SuperHero;
-import com.bartoszko.learning.superheroes.heroes.Villain;
-import com.bartoszko.learning.superheroes.teams.InvalidHeroTeamException;
-import com.bartoszko.learning.superheroes.teams.Team;
-import com.bartoszko.learning.superheroes.teams.TeamControl;
-import com.bartoszko.learning.superheroes.teams.TeamType;
-import com.bartoszko.learning.superheroes.utils.HeroCreator;
-import com.bartoszko.learning.superheroes.utils.MyScanner;
-import com.bartoszko.learning.superheroes.utils.War;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 	
-	
+	static List<String> validArgsList;
 
 	public static void main(String[] args) {
+		App app = new App();	
+		AppContext appContext = new AppContext();	
 		
-		HeroStatistics statsh1 = new HeroStatistics(200, 120, 200);
-		SuperHero hero1 = HeroCreator.createHero("Spiderman", statsh1, TeamType.RED);
-		HeroStatistics statsh2 = new HeroStatistics(300, 400, 50);
-		SuperHero hero2 = HeroCreator.createHero("Superman", statsh2, TeamType.RED);
-		HeroStatistics statsh3 = new HeroStatistics(100, 250, 250);
-		SuperHero hero3 = HeroCreator.createHero("Batman", statsh3, TeamType.RED);
-		HeroStatistics statsh4 = new HeroStatistics(100, 100, 250);
-		KamikadzeCleric hero4 = HeroCreator.createCleric("Cleric", statsh4, TeamType.RED);
+		validArgsList = validateArgs(args);
 		
-		HeroStatistics statsv1 = new HeroStatistics(100, 400, 200); 
-		Villain villain1 = HeroCreator.createVillain("Wilk z Pana Kleksa", statsv1, TeamType.GREEN);
-		HeroStatistics statsv2 = new HeroStatistics(300, 100, 100);
-		Villain villain2 = HeroCreator.createVillain("Buka", statsv2, TeamType.GREEN);
-		HeroStatistics statsv3 = new HeroStatistics(500, 20, 300);
-		Villain villain3 = HeroCreator.createVillain("Nadepniety Klocek Lego", statsv3, TeamType.GREEN);
-
-		Team teamSH = new Team(TeamType.RED, TeamControl.PLAYER_1);
-		Team teamV = new Team(TeamType.GREEN, TeamControl.CPU);
-		Team teamTest = new Team(TeamType.BLUE, TeamControl.PLAYER_2);
-
-		try {
-			teamSH.addHeroToTeam(hero1);
-			teamSH.addHeroToTeam(hero2);
-			teamSH.addHeroToTeam(hero3);
-			teamSH.addHeroToTeam(hero4);
-			teamV.addHeroToTeam(villain1);
-			teamV.addHeroToTeam(villain2);
-			teamV.addHeroToTeam(villain3);
-		} catch (InvalidHeroTeamException e) {
-			e.getMessage();
-		}
+		appContext.setUiClassQualifiedName(selectUIClassQualifiedName());
+		//place for more arguments 
 		
-		
-		War firstEncounter = new War(teamSH, teamV);
-//		War secondEncounter = new War(teamSH, teamTest);
-		
-		firstEncounter.startWar(MyScanner.getScanner());
-//		secondEncounter.startWar();
-		
-		
-		
-		MyScanner.closeScanner();
+		app.initialize(appContext);
+		app.run();
+		app.shutdown();
 	}
-
+	
+	private static List<String> validateArgs(String[] args) {
+		List<String> validArgsList = Arrays.asList(args);
+		//TODO
+		return validArgsList;
+	}
+	
+	private static String selectUIClassQualifiedName() {
+		boolean isTextUIrequired =  validArgsList.stream()
+					.anyMatch(s -> s.contains("--txt"));
+		String uiClassQualifiedName = isTextUIrequired ? "com.bartoszko.learning.superheroes.ui.TextUI" : "com.bartoszko.learning.superheroes.ui.GraphicUI";
+		return uiClassQualifiedName;
+	}
 }

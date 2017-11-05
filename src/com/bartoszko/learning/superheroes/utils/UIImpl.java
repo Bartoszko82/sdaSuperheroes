@@ -9,7 +9,7 @@ import com.bartoszko.learning.superheroes.heroes.AbstractHero;
 import com.bartoszko.learning.superheroes.teams.Team;
 import com.bartoszko.learning.superheroes.teams.TeamControl;
 
-public class UI {
+public class UIImpl {
 //	private static Scanner scanner;
 //	
 //	public static void openScanner(Scanner scanner) {
@@ -22,7 +22,7 @@ public class UI {
 //	}
 	private Random generator;
 	
-	public UI () {
+	public UIImpl () {
 		this.generator = new Random();
 	}
 	

@@ -10,7 +10,7 @@ import com.bartoszko.learning.superheroes.teams.Team;
 public class War {
 	private Team teamA;
 	private Team teamB;
-	private UI userInterface;
+	private UIImpl userInterface;
 	private Random generator;
 	private Comments comments;
 	
@@ -18,7 +18,7 @@ public class War {
 	public War(Team teamA, Team teamB) {
 		this.teamA = teamA;
 		this.teamB = teamB;
-		this.userInterface = new UI();
+		this.userInterface = new UIImpl();
 		this.generator = new Random();
 		this.comments = new Comments();
 	}

@@ -1,22 +1,17 @@
 package com.bartoszko.learning.superheroes.test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import java.util.Scanner;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 import com.bartoszko.learning.superheroes.heroes.AbstractHero;
 import com.bartoszko.learning.superheroes.heroes.HeroStatistics;
-import com.bartoszko.learning.superheroes.heroes.SuperHero;
-import com.bartoszko.learning.superheroes.heroes.Villain;
 import com.bartoszko.learning.superheroes.teams.InvalidHeroTeamException;
 import com.bartoszko.learning.superheroes.teams.Team;
 import com.bartoszko.learning.superheroes.teams.TeamControl;
@@ -25,7 +20,7 @@ import com.bartoszko.learning.superheroes.utils.HeroCreator;
 import com.bartoszko.learning.superheroes.utils.War;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WarTest {
+public class WarTest<teamWithDeadHeroes> {
 	
 	private static AbstractHero heroRED1;
 	private static AbstractHero heroRED2;
@@ -110,17 +105,17 @@ public class WarTest {
 		assertThat(teamWithDeadHeroes.getNumberOfDead(), is(4));
 	}
 	
-	@Test
-	public void teamWithNoOppenentShouldNotChange() {
-		//given
-		Team teamEmpty = teamWithNoSuperheroes;
-		Team teamPopulated = teamHeroes;
-		War war = new War(teamEmpty, teamPopulated);
-		//when
-		war.startWar(scanner);
-		//then
-		assertThat(teamPopulated.getTeamPower(), is(teamHeroes.getTeamPower()));
-	}
+//	@Test
+//	public void teamWithNoOppenentShouldNotChange() {
+//		//given
+//		Team teamEmpty = teamWithNoSuperheroes;
+//		Team teamPopulated = teamHeroes;
+//		War war = new War(teamEmpty, teamPopulated);
+//		//when
+//		war.startWar(scanner);
+//		//then
+//		assertThat(teamPopulated.getTeamPower(), is(teamHeroes.getTeamPower()));
+//	}
 	
 	@Test
 	public void oneTeamShouldBeDefeatedAndHaveNoHeroesAlive() {

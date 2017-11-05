@@ -26,7 +26,7 @@ public class HeroCreator {
 		int health = Integer.parseInt(healthStr);
 		String attackStr = System.getProperty("config.superHeroBaseAttack");
 		int attack = Integer.parseInt(attackStr);
-		String defenseStr = System.getProperty("config.superHeroBaseDefence");
+		String defenseStr = System.getProperty("config.superHeroBaseDefense");
 		int defense = Integer.parseInt(defenseStr);
 		
 		HeroStatistics stats = new HeroStatistics(health, attack, defense);
@@ -40,7 +40,7 @@ public class HeroCreator {
 		int health = Integer.parseInt(healthStr);
 		String attackStr = System.getProperty("config.superHeroBaseAttack");
 		int attack = Integer.parseInt(attackStr);
-		String defenseStr = System.getProperty("config.superHeroBaseDefence");
+		String defenseStr = System.getProperty("config.superHeroBaseDefense");
 		int defense = Integer.parseInt(defenseStr);
 		
 		HeroStatistics stats = new HeroStatistics(health, attack, defense);
